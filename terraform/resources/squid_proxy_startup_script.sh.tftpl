@@ -9,7 +9,6 @@ apt-get install -y squid-openssl
 ## Proxy configuration..
 echo "Configuring squid proxy.."
 
-# # NOTE: Listen on all IPs to bind TCP load balancer IP..
 cat <<EOF >/etc/squid/squid.conf
 http_port 3128
 
