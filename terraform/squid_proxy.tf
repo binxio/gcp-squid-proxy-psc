@@ -20,7 +20,7 @@ resource "google_compute_instance_template" "proxy" {
   region      = "europe-west1"
   name_prefix = "squid-proxy-"
 
-  machine_type = "e2-medium"
+  machine_type            = "e2-medium"
   metadata_startup_script = file("${path.module}/resources/squid_proxy_startup_script.sh.tftpl")
 
   disk {
@@ -119,19 +119,19 @@ resource "google_compute_address" "proxy" {
 
 resource "google_compute_service_attachment" "proxy" {
   project = var.project_id
-  region      = "europe-west1"
-  name        = "squid-proxy"
+  region  = "europe-west1"
+  name    = "squid-proxy"
 
   enable_proxy_protocol = false
 
-  nat_subnets           = [google_compute_subnetwork.destination_vpc_psc.self_link]
-  target_service        = google_compute_forwarding_rule.proxy.self_link
+  nat_subnets    = [google_compute_subnetwork.destination_vpc_psc.self_link]
+  target_service = google_compute_forwarding_rule.proxy.self_link
 
   connection_preference = "ACCEPT_MANUAL"
 
   consumer_accept_lists {
     project_id_or_num = var.project_id
-    connection_limit = 4
+    connection_limit  = 4
   }
 }
 

@@ -11,7 +11,7 @@ resource "google_compute_forwarding_rule" "proxy_endpoint" {
   region  = "europe-west1"
   name    = "squid-proxy-endpoint"
 
-  ip_address = google_compute_address.proxy_endpoint.id
+  ip_address            = google_compute_address.proxy_endpoint.id
   load_balancing_scheme = "" # Prevent default to 'EXTERNAL'
 
   network    = google_compute_network.source_vpc.id
